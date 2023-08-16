@@ -22,7 +22,7 @@ Capturas de Pantalla
 (Puedes incluir enlaces aquí a las capturas de pantalla si decides añadirlas posteriormente)
 
 Mención de Ayuda y Diseño
-ayuda en diseño y creacion del README
+ayuda en diseño y creacion del README = https://chat.openai.com/
 
 Licencia
 Este proyecto no tiene una licencia específica y se proporciona tal como está.
