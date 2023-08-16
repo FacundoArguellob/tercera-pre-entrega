@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+ <div class="container mt-4">
+    <div class="col-md-6">
+        <h2>Registro de Tarea</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="{{ tareas_form.nombre.id_for_label }}" class="form-label">Nombre de la Tarea</label>
+                {{ tareas_form.nombre }}
+            </div>
+            <div class="mb-3">
+                <label for="{{ tareas_form.descripcion.id_for_label }}" class="form-label">Descripción</label>
+                {{ tareas_form.descripcion }}
+            </div>
+            <div class="mb-3">
+                <label for="{{ tareas_form.fecha_inicio.id_for_label }}" class="form-label">Fecha de Inicio</label>
+                {{ tareas_form.fecha_inicio }}
+            </div>
+            <div class="mb-3">
+                <label for="{{ tareas_form.fecha_fin.id_for_label }}" class="form-label">Fecha de Fin</label>
+                {{ tareas_form.fecha_fin }}
+            </div>
+            <div class="mb-3">
+                <label for="{{ tareas_form.estado.id_for_label }}" class="form-label">Estado</label>
+                {{ tareas_form.estado }}
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar Tarea</button>
+        </form>
+    </div>
+</div> 
+
+
+<div class="container mt-4">
+    <div class="col-md-12">
+        <h2>Lista de Tareas</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Fecha de Fin</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tarea in tareas_print %}
+                    <tr>
+                        <td>{{ tarea.nombre }}</td>
+                        <td>
+                            <div class="descripcion-corta">
+                                {{ tarea.descripcion|truncatewords:10 }} <!-- Limita a 10 palabras -->
+                            </div>
+                            <div class="descripcion-completa d-none">
+                                {{ tarea.descripcion }}
+                            </div>
+                        </td>
+                        <td>{{ tarea.fecha_inicio }}</td>
+                        <td>{{ tarea.fecha_fin }}</td>
+                        <td>{{ tarea.estado }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

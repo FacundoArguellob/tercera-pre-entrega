@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Registro de Usuario</h2>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ usuarios_form.as_p }}
+                <button type="submit" class="btn btn-primary mt-3">Registrar Usuario</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h2>Buscar Usuarios</h2>
+            <form action="{% url 'buscar_usuarios' %}" method="get">
+                <input type="text" name="buscar" id="buscar" class="form-control" placeholder="Nombre del usuario">
+                <button type="submit" class="btn btn-primary mt-3">Buscar</button>
+            </form>
+            <div class="mt-4">
+                <h2>Resultados de la búsqueda</h2>
+                {% if resultado_usuarios %}
+                    <ul class="list-group">
+                        {% for usuario in resultado_usuarios %}
+                            <li class="list-group-item">{{ usuario.nombre }} - {{ usuario.email }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="mt-4">
+                <h2>Lista de Usuarios</h2>
+                <ul class="list-group">
+                    {% for usuario in usuarios_print %}
+                        <li class="list-group-item">{{ usuario.nombre }} - {{ usuario.email }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
